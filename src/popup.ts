@@ -10,8 +10,14 @@ function escapeHtml(str: string): string {
 function renderRules(rules: Rule[]): void {
   const list = document.getElementById('rules-list')!;
   const empty = document.getElementById('empty-msg')!;
+  const clearBtn = document.getElementById('clear-all-btn')!;
 
   empty.style.display = rules.length === 0 ? '' : 'none';
+  if (rules.length > 0) {
+    clearBtn.dataset['visible'] = '';
+  } else {
+    delete clearBtn.dataset['visible'];
+  }
   list.innerHTML = '';
 
   rules.forEach(rule => {
@@ -47,6 +53,11 @@ function addRule(value: string): void {
 
 const addBtn = document.getElementById('add-btn')!;
 const input = document.getElementById('new-rule-input') as HTMLInputElement;
+const clearAllBtn = document.getElementById('clear-all-btn')!;
+
+clearAllBtn.addEventListener('click', () => {
+  chrome.storage.sync.set({ rules: [] }, () => renderRules([]));
+});
 
 addBtn.addEventListener('click', () => {
   addRule(input.value.trim());

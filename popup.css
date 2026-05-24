@@ -12,13 +12,37 @@ body {
   background: #fff;
 }
 
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
 h1 {
   font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: #666;
-  margin-bottom: 12px;
+}
+
+#clear-all-btn {
+  background: none;
+  border: none;
+  font-size: 11px;
+  color: #c0392b;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+#clear-all-btn:hover {
+  background: #fdecea;
+}
+
+#clear-all-btn:not([data-visible]) {
+  display: none;
 }
 
 #empty-msg {

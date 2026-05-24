@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "tsc --noEmit && esbuild src/content.ts src/popup.ts src/background.ts --bundle --outdir=dist --target=chrome88 && copyfiles -f manifest.json popup.html popup.css dist/",
+    "icons": "node scripts/generate-icons.js",
+    "build": "npm run icons && tsc --noEmit && esbuild src/content.ts src/popup.ts src/background.ts --bundle --outdir=dist --target=chrome88 && copyfiles -f manifest.json popup.html popup.css dist/ && copyfiles \"icons/*.png\" dist/",
     "watch": "esbuild src/content.ts src/popup.ts src/background.ts --bundle --outdir=dist --target=chrome88 --watch",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -13,6 +14,7 @@
     "@types/chrome": "^0.0.321",
     "copyfiles": "^2.4.1",
     "esbuild": "^0.28.0",
+    "sharp": "^0.34.5",
     "typescript": "^5.8.3",
     "vitest": "^4.1.7"
   }

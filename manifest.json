@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "AutoNope",
+  "version": "1.0.0",
+  "description": "Hide makes and models you never want to see. Browse AutoTrader your way.",
+  "minimum_chrome_version": "88",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["storage"],
+  "host_permissions": ["https://www.autotrader.co.uk/*"],
+  "content_scripts": [
+    {
+      "matches": ["https://www.autotrader.co.uk/car-search*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "AutoNope"
+  }
+}

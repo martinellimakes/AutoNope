@@ -1,0 +1,19 @@
+{
+  "name": "autonope",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc --noEmit && esbuild src/content.ts src/popup.ts src/background.ts --bundle --outdir=dist --target=chrome88 && copyfiles -f manifest.json popup.html popup.css dist/",
+    "watch": "esbuild src/content.ts src/popup.ts src/background.ts --bundle --outdir=dist --target=chrome88 --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.321",
+    "copyfiles": "^2.4.1",
+    "esbuild": "^0.28.0",
+    "typescript": "^5.8.3",
+    "vitest": "^4.1.7"
+  }
+}
